@@ -19,27 +19,31 @@ const Sidebar: React.FC<SidebarProps> = ({ items, onItemSelect }) => {
         setIsOpen(!isOpen);
     };
 
-    return(
-    <aside className={`sidebar bg-light ${isOpen ? 'd-block' : 'd-none'}`}>
-        <div className="d-flex justify-content-between align-items-center p-3 border-bottom">
-            <div className="d-flex align-items-center">
-                <img src="assets/images/logo.png" alt="Logo" className="me-2" />
-                <h2 className="m-0">Atmos<span className="text-primary">Clear</span></h2>
+    return (
+        <aside style={{ display: isOpen ? 'block' : 'none' }}>
+            <div className="toggle">
+                <div className="logo">
+                    <img src="assets/images/logo.png" />
+                    <h2>Atmos<span className="primary">Clear</span></h2>
+                </div>
+                <div className="close" id="close-btn" onClick={handleToggle}>
+                    <span className="material-icons-sharp">
+                        close
+                    </span>
+                </div>
             </div>
-            <button className="btn btn-outline-secondary" onClick={handleToggle}>
-                <span className="material-icons-sharp">close</span>
-            </button>
-        </div>
 
-        <div className="list-group list-group-flush">
-            {items.map((item, index) => (
-                <a href={item.href} key={index} className="list-group-item list-group-item-action d-flex align-items-center" onClick={() => onItemSelect && onItemSelect(item.label)}>
-                    <span className="material-icons-sharp me-2">{item.icon}</span>
-                    <h3 className="m-0">{item.label}</h3>
-                </a>
-            ))}
-        </div>
-    </aside>
+            <div className="sidebar">
+                {items.map((item, index) => (
+                    <a href={item.href} key={index} onClick={() => onItemSelect && onItemSelect(item.label)}>
+                        <span className="material-icons-sharp">
+                            {item.icon}
+                        </span>
+                        <h3>{item.label}</h3>
+                    </a>
+                ))}
+            </div>
+        </aside>
     );
 };
 
