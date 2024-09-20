@@ -16,11 +16,11 @@ function App() {
         {/* <!-- Sidebar Section --> */}
         <Sidebar items={[
           { icon: "dashboard", label: "Dashboard", href: "#" },
-          { icon: "analytics", label: "Analytics", href: "#" },
+          { icon: "insights", label: "Analytics", href: "#", active: true },
           { icon: "receipt_long", label: "History", href: "#" },
           { icon: "report_gmailerrorred", label: "Reports", href: "#" },
           { icon: "settings", label: "Settings", href: "#" },
-          { icon: "exit_to_app", label: "Logout", href: "#" }
+          { icon: "logout", label: "Logout", href: "#" }
         ]} />
         {/* <!-- End of Sidebar Section --> */}
 
@@ -30,11 +30,11 @@ function App() {
           {/* <!-- Analyses --> */}
           <div className="analyse">
             <PercentageBlock list={[
-              { label: "Cleanliness", percentage: 75, value: 125 },
-              { label: "Temperature", percentage: 75, value: 28 },
-              { label: "Humidity", percentage: 75, value: 122 },
-              { label: "PM2.5", percentage: 75, value: 11 },
-              { label: "DHT22", percentage: 75, value: 15 },
+              { label: "Cleanliness", color: "green", percentage: 75, value: 125 },
+              { label: "Temperature", color: "blue", percentage: 75, value: 28 },
+              { label: "Humidity", color: "green", percentage: 75, value: 122 },
+              { label: "PM2.5", color: "blue", percentage: 75, value: 11 },
+              { label: "DHT22", color: "red", percentage: 75, value: 15 },
             ]} />
           </div>
           {/* <!-- End of Analyses --> */}
@@ -68,9 +68,9 @@ function App() {
           {/* <!-- End of New Users Section --> */}
 
           {/* <!-- Recent Data Table --> */}
-          <DataTable list={Array.from({ length: 20 }, (_, index) => ({
-            date: new Date(Date.now() - index * 86400000).toLocaleDateString(),
-            status: ["Good", "Bad", "Approved"][index % 3],
+          <DataTable list={Array.from({ length: 20 }, (_, i) => ({
+            date: new Date(Date.now() - i * 86400000).toLocaleDateString(),
+            status: ["Good", "Bad", "Approved"][Math.floor(Math.random() * 3)],
             values: Array.from({ length: 3 }, () => Math.floor(Math.random() * 300))
           }))} title="Recent Data" className="recent-data" columnNames={["Date", "Status", "AQI", "Sensor 1", "Sensor 2"]} />
           {/* <!-- End of Recent Orders --> */}

@@ -1,9 +1,11 @@
 
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 
 interface SidebarItem {
     icon: string;
     label: string;
+    active?: boolean;
     href: string;
 }
 
@@ -12,8 +14,19 @@ interface SidebarProps {
     onItemSelect?: (label: string) => void;
 }
 
+const useWindowWidth = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return width;
+};
 const Sidebar: React.FC<SidebarProps> = ({ items, onItemSelect }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -35,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, onItemSelect }) => {
 
             <div className="sidebar">
                 {items.map((item, index) => (
-                    <a href={item.href} key={index} onClick={() => onItemSelect && onItemSelect(item.label)}>
+                    <a href={item.href} key={index} onClick={() => onItemSelect && onItemSelect(item.label)} className={item.active ? 'active' : ''}>
                         <span className="material-icons-sharp">
                             {item.icon}
                         </span>
