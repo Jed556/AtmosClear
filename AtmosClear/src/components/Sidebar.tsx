@@ -1,6 +1,5 @@
 
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 interface SidebarItem {
     icon: string;
@@ -14,7 +13,7 @@ interface SidebarProps {
     onItemSelect?: (label: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ items, onItemSelect }) => {
+export default function Sidebar({ items, onItemSelect }: SidebarProps) {
     const [isOpen, setIsOpen] = useState(true);
 
     const handleToggle = () => {
@@ -48,5 +47,3 @@ const Sidebar: React.FC<SidebarProps> = ({ items, onItemSelect }) => {
         </aside>
     );
 };
-
-export default Sidebar;

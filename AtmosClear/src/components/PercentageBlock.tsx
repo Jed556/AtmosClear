@@ -1,9 +1,7 @@
-import React from 'react';
 import './PercentageBlock.css';
 
 interface PercentageBlockProps {
     list: { label: string, color: 'red' | 'green' | 'blue', percentage: number, value: number }[];
-    children?: React.ReactNode;
 }
 
 function PercentageBlock({ list }: PercentageBlockProps) {

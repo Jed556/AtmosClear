@@ -69,11 +69,7 @@ function App() {
           {/* <!-- End of New Users Section --> */}
 
           {/* <!-- Recent Data Table --> */}
-          <DataTable list={Array.from({ length: 20 }, (_, i) => ({
-            date: new Date(Date.now() - i * 86400000).toLocaleDateString(),
-            status: ["Good", "Moderate","Unhealthy to Some", "Unhealthy", "Very Unhealthy", "Hazardous"][Math.floor(Math.random() * 6)],
-            values: Array.from({ length: 3 }, () => Math.floor(Math.random() * 300))
-          }))} title="Recent Data" className="recent-data" columnNames={["Date", "Status", "AQI", "Sensor 1", "Sensor 2"]} />
+          <DataTable url={"http://localhost:80/atmosclear/getdata.php"} className='recent-data' title='Recent Data' />
           {/* <!-- End of Recent Orders --> */}
 
         </main>

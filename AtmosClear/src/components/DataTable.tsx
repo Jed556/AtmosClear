@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import fetchSensorData from './GetData.tsx';
+import { isValidDate, formatDateTime } from './DateTime.tsx';
 
-interface Props {
-  title: string;
-  className: string;
-  columnNames: string[];
-  list: {
-    date: string,
-    status: string,
-    values: number[]
-  }[];
+interface TableProps {
+  url: string
+  className: string
+  title: string
+  maxRows?: number
 }
 
-function DataTable({ title, className }: Props) {
-  const [list, setList] = useState<Props['list']>([]);
+export default function DataTable({ url, className, title, maxRows = 10 }: TableProps) {
+  const [list, setList] = useState<any[]>([]);
   const [columnNames, setColumnNames] = useState<string[]>([]);
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetchSensorData();
+      const data = await fetchSensorData(url);
       const list = data.map((item: any) => ({
-        date: item.DateTime,
-        status: item.Id,
         values: Object.keys(item).filter(key => key !== 'Id').map(key => item[key])
       }));
-      const columnNames = ['Date', 'Status', ...Object.keys(data[0]).filter(key => key !== 'Id')];
+      console.log(list);
+      const columnNames = [...Object.keys(data[0]).filter(key => key !== 'Id')];
+      console.log(columnNames);
       setList(list);
       setColumnNames(columnNames);
     }
@@ -39,26 +36,22 @@ function DataTable({ title, className }: Props) {
           <thead>
             <tr>
               {columnNames.map((item, index) => (
-                <th key={index}>{item}</th>
+                <th key={index}>{item == "DateTime" ? "Date & Time" : item}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {list.slice(0, 10).map((item, index) => (
-              <tr key={index}>
-                <td>{item.date}</td>
-                <td>{item.status}</td>
-                {item.values.map((value, index) => (
-                  <td key={index}>{value}</td>
+            {list.slice(0, maxRows).map((item: any, rowIndex: number) => (
+              <tr key={rowIndex}>
+                {item.values.map((value: any, colIndex: number) => (
+                  <td key={colIndex}>{isValidDate(value) ? formatDateTime(value) : value}</td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
         <a href="#">Show All</a>
-      </div >
+      </div>
     </>
   );
 };
-
-export default DataTable;
