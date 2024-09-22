@@ -175,6 +175,7 @@ aside .sidebar a {
     position: relative;
     margin-left: 2rem;
     transition: all 0.3s ease;
+    top: 3rem;
 }
 
 aside .sidebar a span {
@@ -184,6 +185,7 @@ aside .sidebar a span {
 
 aside .sidebar a:last-child {
     position: absolute;
+    top: auto;
     bottom: 2rem;
     width: 100%;
 }
@@ -290,13 +292,13 @@ main .analyse .green svg circle {
 main .analyse .red svg circle {
     stroke: var(--color-danger);
     stroke-dashoffset: -30;
-    stroke-dasharray: 200;
+    stroke-dasharray: 100;
 }
 
 main .analyse .blue svg circle {
     stroke: var(--color-primary);
     stroke-dashoffset: -30;
-    stroke-dasharray: 200;
+    stroke-dasharray: 150;
 }
 
 main .analyse .progress .percentage {

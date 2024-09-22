@@ -8,6 +8,7 @@ function App() {
 
   return (
     <>
+      
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
       <title>Dashboard</title>
@@ -15,8 +16,8 @@ function App() {
       <div className="container">
         {/* <!-- Sidebar Section --> */}
         <Sidebar items={[
-          { icon: "dashboard", label: "Dashboard", href: "#" },
-          { icon: "insights", label: "Analytics", href: "#", active: true },
+          { icon: "dashboard", label: "Dashboard", href: "#", active: true },
+          { icon: "insights", label: "Analytics", href: "#" },
           { icon: "receipt_long", label: "History", href: "#" },
           { icon: "report_gmailerrorred", label: "Reports", href: "#" },
           { icon: "settings", label: "Settings", href: "#" },
@@ -70,7 +71,7 @@ function App() {
           {/* <!-- Recent Data Table --> */}
           <DataTable list={Array.from({ length: 20 }, (_, i) => ({
             date: new Date(Date.now() - i * 86400000).toLocaleDateString(),
-            status: ["Good", "Bad", "Approved"][Math.floor(Math.random() * 3)],
+            status: ["Good", "Moderate","Unhealthy to Some", "Unhealthy", "Very Unhealthy", "Hazardous"][Math.floor(Math.random() * 6)],
             values: Array.from({ length: 3 }, () => Math.floor(Math.random() * 300))
           }))} title="Recent Data" className="recent-data" columnNames={["Date", "Status", "AQI", "Sensor 1", "Sensor 2"]} />
           {/* <!-- End of Recent Orders --> */}
@@ -118,7 +119,7 @@ function App() {
 
           <div className="reminders">
             <div className="header">
-              <h2>Reminders</h2>
+              <h2>Reports</h2>
               <span className="material-icons-sharp">
                 notifications_none
               </span>
@@ -127,14 +128,14 @@ function App() {
             <div className="notification">
               <div className="icon">
                 <span className="material-icons-sharp">
-                  volume_up
+                  info
                 </span>
               </div>
               <div className="content">
                 <div className="info">
-                  <h3>Workshop</h3>
+                  <h3>Good AQI</h3>
                   <small className="text_muted">
-                    08:00 AM - 12:00 PM
+                    11:00 AM
                   </small>
                 </div>
                 <span className="material-icons-sharp">
@@ -146,14 +147,14 @@ function App() {
             <div className="notification deactive">
               <div className="icon">
                 <span className="material-icons-sharp">
-                  edit
+                  dangerous
                 </span>
               </div>
               <div className="content">
                 <div className="info">
-                  <h3>Workshop</h3>
+                  <h3>High AQI</h3>
                   <small className="text_muted">
-                    08:00 AM - 12:00 PM
+                    10:00 AM
                   </small>
                 </div>
                 <span className="material-icons-sharp">

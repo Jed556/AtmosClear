@@ -14,17 +14,6 @@ interface SidebarProps {
     onItemSelect?: (label: string) => void;
 }
 
-const useWindowWidth = () => {
-    const [width, setWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => setWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    return width;
-};
 const Sidebar: React.FC<SidebarProps> = ({ items, onItemSelect }) => {
     const [isOpen, setIsOpen] = useState(true);
 
