@@ -27,3 +27,4 @@ php/vendor
 
 # Environment
 .env
+package-lock.json
