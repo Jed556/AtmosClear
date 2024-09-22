@@ -2,7 +2,6 @@ import { server } from '../config'
 import { getAPI } from '../components/Server'
 
 import DataTable from '../components/DataTable'
-import PercentageBlock from '../components/PercentageBlock'
 import Sidebar from '../components/Sidebar'
 
 import profileImage from '../assets/images/profile-1.jpg';
