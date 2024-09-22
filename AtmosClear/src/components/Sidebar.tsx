@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import logo from '../assets/images/logo.png';
 
 interface SidebarItem {
     icon: string;
@@ -24,7 +25,7 @@ export default function Sidebar({ items, onItemSelect }: SidebarProps) {
         <aside style={{ display: isOpen ? 'block' : 'none' }}>
             <div className="toggle">
                 <div className="logo">
-                    <img src="assets/images/logo.png" />
+                    <img src={logo} />
                     <h2>Atmos<span className="primary">Clear</span></h2>
                 </div>
                 <div className="close" id="close-btn" onClick={handleToggle}>

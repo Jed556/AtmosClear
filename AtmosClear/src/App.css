@@ -641,6 +641,11 @@ main .recent-data a {
         display: inline;
     }
 
+    aside .sidebar {
+        box-shadow: none ;
+        height: 95vh;
+    }
+
     aside .sidebar h3 {
         display: inline;
     }
