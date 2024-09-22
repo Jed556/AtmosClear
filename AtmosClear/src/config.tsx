@@ -1,7 +1,6 @@
 import { Server } from "./schemas/Server";
 
 export const server: Server = {
-    url: "localhost",
-    suffix: "atmosclear",
+    url: "http://localhost",
     port: 80
 }

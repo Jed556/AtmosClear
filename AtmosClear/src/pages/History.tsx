@@ -31,7 +31,7 @@ export default function Dashboard() {
                     <h1>History</h1>
 
                     {/* <!-- Recent Data Table --> */}
-                    <DataTable url={getAPI(server, "getdata.php")} className='recent-data' title='Data Log' maxRows={200} />
+                    <DataTable url={getAPI(server, "api/get/history.php")} className='recent-data' title='Data Log' maxRows={200} />
                     {/* <!-- End of Recent Orders --> */}
 
                 </main>

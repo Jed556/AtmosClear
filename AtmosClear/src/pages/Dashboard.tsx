@@ -43,7 +43,7 @@ export default function Dashboard() {
                     {/* <!-- End of Analyses --> */}
 
                     {/* <!-- Recent Data Table --> */}
-                    <DataTable url={getAPI(server, "getdata.php")} className='recent-data' title='Recent Data' />
+                    <DataTable url={getAPI(server, "api/get/history.php")} className='recent-data' title='Recent Data' />
                     {/* <!-- End of Recent Orders --> */}
 
                 </main>

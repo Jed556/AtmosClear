@@ -1,5 +1,4 @@
 export interface Server {
-    url?: string;
-    suffix?: string;
-    port?: number;
+    url: string;
+    port: number;
 }
