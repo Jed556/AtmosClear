@@ -18,9 +18,9 @@ export default function Dashboard() {
             <div className="container">
                 {/* <!-- Sidebar Section --> */}
                 <Sidebar items={[
-                    { icon: "dashboard", label: "Dashboard", href: "#", active: true },
+                    { icon: "dashboard", label: "Dashboard", href: "dashboard" },
                     { icon: "insights", label: "Analytics", href: "#" },
-                    { icon: "receipt_long", label: "History", href: "history" },
+                    { icon: "receipt_long", label: "History", href: "#", active: true },
                     { icon: "report_gmailerrorred", label: "Reports", href: "#" },
                     { icon: "settings", label: "Settings", href: "#" },
                     { icon: "logout", label: "Logout", href: "#" }
@@ -29,21 +29,10 @@ export default function Dashboard() {
 
                 {/* <!-- Main Content --> */}
                 <main>
-                    <h1>Analytics</h1>
-                    {/* <!-- Analyses --> */}
-                    <div className="analyse">
-                        <PercentageBlock list={[
-                            { label: "Cleanliness", color: "green", percentage: 75, value: 125 },
-                            { label: "Temperature", color: "blue", percentage: 75, value: 28 },
-                            { label: "Humidity", color: "green", percentage: 75, value: 122 },
-                            { label: "PM2.5", color: "blue", percentage: 75, value: 11 },
-                            { label: "DHT22", color: "red", percentage: 75, value: 15 },
-                        ]} />
-                    </div>
-                    {/* <!-- End of Analyses --> */}
+                    <h1>History</h1>
 
                     {/* <!-- Recent Data Table --> */}
-                    <DataTable url={getAPI(server, "getdata.php")} className='recent-data' title='Recent Data' />
+                    <DataTable url={getAPI(server, "getdata.php")} className='recent-data' title='Data Log' maxRows={200} />
                     {/* <!-- End of Recent Orders --> */}
 
                 </main>
