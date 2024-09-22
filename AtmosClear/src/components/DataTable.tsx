@@ -3,13 +3,14 @@ import fetchSensorData from './GetData.tsx';
 import { isValidDate, formatDateTime } from './DateTime.tsx';
 
 interface TableProps {
-  url: string
-  className: string
-  title: string
-  maxRows?: number
+  url: string;
+  className: string;
+  title: string;
+  maxRows?: number;
+  refreshInterval?: number; // Add an optional refresh interval prop
 }
 
-export default function DataTable({ url, className, title, maxRows = 10 }: TableProps) {
+export default function DataTable({ url, className, title, maxRows = 10, refreshInterval = 1000 }: TableProps) {
   const [list, setList] = useState<any[]>([]);
   const [columnNames, setColumnNames] = useState<string[]>([]);
 
@@ -25,33 +26,36 @@ export default function DataTable({ url, className, title, maxRows = 10 }: Table
       setList(list);
       setColumnNames(columnNames);
     }
-    fetchData();
-  }, []);
+
+    fetchData(); // Initial fetch
+
+    const intervalId = setInterval(fetchData, refreshInterval); // Set up interval
+
+    return () => clearInterval(intervalId); // Clean up interval on component unmount
+  }, [url, refreshInterval]);
 
   return (
-    <>
-      <div className={className}>
-        <h2>{title}</h2>
-        <table>
-          <thead>
-            <tr>
-              {columnNames.map((item, index) => (
-                <th key={index}>{item == "DateTime" ? "Date & Time" : item}</th>
+    <div className={className}>
+      <h2>{title}</h2>
+      <table>
+        <thead>
+          <tr>
+            {columnNames.map((item, index) => (
+              <th key={index}>{item}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {list.slice(0, maxRows).map((item: any, rowIndex: number) => (
+            <tr key={rowIndex}>
+              {item.values.map((value: any, colIndex: number) => (
+                <td key={colIndex}>{colIndex == 0 && isValidDate(value) ? formatDateTime(value) : value}</td>
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {list.slice(0, maxRows).map((item: any, rowIndex: number) => (
-              <tr key={rowIndex}>
-                {item.values.map((value: any, colIndex: number) => (
-                  <td key={colIndex}>{isValidDate(value) ? formatDateTime(value) : value}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <a href="#">Show All</a>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+      <a href="#">Show All</a>
+    </div>
   );
-};
+}
