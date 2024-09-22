@@ -1,27 +1,34 @@
 {
     "functions": {
-        "api/get/history.php": {
+        "api/connect.php": {
             "runtime": "vercel-php@0.7.1"
         },
         "api/info/phpinfo.php": {
             "runtime": "vercel-php@0.7.1"
         },
-        "api/connect.php": {
+        "api/create/tables.php": {
+            "runtime": "vercel-php@0.7.1"
+        },
+        "api/get/history.php": {
             "runtime": "vercel-php@0.7.1"
         }
     },
     "routes": [
         {
-            "src": "/get/history",
-            "dest": "/api/get/history.php"
+            "src": "/",
+            "dest": "/api/connect.php"
         },
         {
             "src": "/php",
             "dest": "/api/info/phpinfo.php"
         },
         {
-            "src": "/",
-            "dest": "/api/connect.php"
+            "src": "/create/tables",
+            "dest": "/api/create/tables.php"
+        },
+        {
+            "src": "/get/history",
+            "dest": "/api/get/history.php"
         }
     ]
 }
