@@ -20,10 +20,15 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
       const list = data.map((item: any) => ({
         values: Object.keys(item).filter(key => key !== 'Id').map(key => item[key])
       }));
-      console.log(list);
       const columnNames = [...Object.keys(data[0]).filter(key => key !== 'Id')];
-      console.log(columnNames);
-      setList(list);
+
+      const sortedList = [...list].sort((a, b) => {
+        const dateA = new Date(a.values[0]);
+        const dateB = new Date(b.values[0]);
+        return dateB.getTime() - dateA.getTime(); // Descending order
+      });
+
+      setList(sortedList);
       setColumnNames(columnNames);
     }
 
@@ -46,16 +51,18 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
           </tr>
         </thead>
         <tbody>
-          {list.slice(0, maxRows).map((item: any, rowIndex: number) => (
+          {list.slice(0, maxRows === 0 ? list.length : maxRows).map((item: any, rowIndex: number) => (
             <tr key={rowIndex}>
               {item.values.map((value: any, colIndex: number) => (
-                <td key={colIndex}>{colIndex == 0 && isValidDate(value) ? formatDateTime(value) : value}</td>
+                <td key={colIndex}>{colIndex === 0 && isValidDate(value) ? formatDateTime(value) : value}</td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
-      <a href="#">Show All</a>
+      {maxRows !== 0 && list.length > maxRows && (
+        <a href="#">Show All</a>
+      )}
     </div>
   );
 }
