@@ -1,13 +1,13 @@
 {
     "functions": {
-        "api/gethistory.php": {
+        "get/history.php": {
             "runtime": "vercel-php@0.8.3"
         }
     },
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/api/gethistory.php"
+            "dest": "/get/gethistory.php"
         }
     ]
 }
