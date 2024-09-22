@@ -3,7 +3,10 @@
         "api/get/history.php": {
             "runtime": "vercel-php@0.7.1"
         },
-        "api/index.php": {
+        "api/info/phpinfo.php": {
+            "runtime": "vercel-php@0.7.1"
+        },
+        "api/connect.php": {
             "runtime": "vercel-php@0.7.1"
         }
     },
@@ -13,8 +16,12 @@
             "dest": "/api/get/history.php"
         },
         {
+            "src": "/php",
+            "dest": "/api/info/phpinfo.php"
+        },
+        {
             "src": "/",
-            "dest": "/api/index.php"
+            "dest": "/api/connect.php"
         }
     ]
 }
