@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { server } from '../config'
 import { getAPI } from '../components/Server'
+import '../App.css'
 
 import DataTable from '../components/DataTable'
 import PercentageBlock from '../components/PercentageBlock'
@@ -9,6 +13,14 @@ import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
 
 export default function Dashboard() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (!loggedInUser) {
+            navigate('/login');
+        }
+    }, []);
     return (
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,18 +30,18 @@ export default function Dashboard() {
             <div className="container">
                 {/* <!-- Sidebar Section --> */}
                 <Sidebar items={[
-                    { icon: "dashboard", label: "Dashboard", href: "#", active: true },
-                    { icon: "insights", label: "Analytics", href: "#" },
+                    { icon: "dashboard", label: "Dashboard", href: "dashboard", active: true },
+                    { icon: "insights", label: "Analytics", href: "analytics" },
                     { icon: "receipt_long", label: "History", href: "history" },
-                    { icon: "report_gmailerrorred", label: "Reports", href: "#" },
-                    { icon: "settings", label: "Settings", href: "#" },
-                    { icon: "logout", label: "Logout", href: "#" }
+                    { icon: "report_gmailerrorred", label: "Reports", href: "reports" },
+                    { icon: "settings", label: "Settings", href: "settings" },
+                    { icon: "logout", label: "Logout", href: "login" }
                 ]} />
                 {/* <!-- End of Sidebar Section --> */}
 
                 {/* <!-- Main Content --> */}
                 <main>
-                    <h1>Analytics</h1>
+                    <h1>Dashboard</h1>
                     {/* <!-- Analyses --> */}
                     <div className="analyse">
                         <PercentageBlock list={[
@@ -68,7 +80,8 @@ export default function Dashboard() {
 
                         <div className="profile">
                             <div className="info">
-                                <p>Hey, <b>Jed</b></p>
+                                <p>{['Hey', 'Hi', 'Hello'][Math.floor(Math.random() * 3)]}, <b>{(localStorage.getItem('loggedInUser') && JSON.parse(localStorage.getItem('loggedInUser') as string).Username) || "Guest"}
+                                </b></p>
                                 <small className="text-muted">Admin</small>
                             </div>
                             <div className="profile-photo">

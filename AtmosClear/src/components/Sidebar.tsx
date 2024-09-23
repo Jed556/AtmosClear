@@ -21,6 +21,15 @@ export default function Sidebar({ items, onItemSelect }: SidebarProps) {
         setIsOpen(!isOpen);
     };
 
+    const handleItemClick = (label: string) => {
+        if (label === 'Logout') {
+            localStorage.removeItem('loggedInUser');
+        }
+        if (onItemSelect) {
+            onItemSelect(label);
+        }
+    };
+
     return (
         <aside style={{ display: isOpen ? 'block' : 'none' }}>
             <div className="toggle">
@@ -37,7 +46,7 @@ export default function Sidebar({ items, onItemSelect }: SidebarProps) {
 
             <div className="sidebar">
                 {items.map((item, index) => (
-                    <a href={item.href} key={index} onClick={() => onItemSelect && onItemSelect(item.label)} className={item.active ? 'active' : ''}>
+                    <a href={item.href} key={index} onClick={() => handleItemClick(item.label)} className={item.active ? 'active' : ''}>
                         <span className="material-icons-sharp">
                             {item.icon}
                         </span>
