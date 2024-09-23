@@ -61,7 +61,7 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
         </tbody>
       </table>
       {maxRows !== 0 && list.length > maxRows && (
-        <a href="#">Show All</a>
+        <a href="history">Show All</a>
       )}
     </div>
   );
