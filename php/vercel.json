@@ -19,7 +19,7 @@
             "dest": "/api/connect.php"
         },
         {
-            "src": "/php",
+            "src": "/info/php",
             "dest": "/api/info/phpinfo.php"
         },
         {
