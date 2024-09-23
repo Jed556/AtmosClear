@@ -1,5 +1,5 @@
 import axios from 'axios';
-async function fetchSensorData(url: string): Promise<any> {
+async function fetchData(url: string): Promise<any> {
     try {
         const response = await axios.get(url)
         return response.data;
@@ -9,4 +9,4 @@ async function fetchSensorData(url: string): Promise<any> {
     }
 };
 
-export default fetchSensorData;
+export default fetchData;

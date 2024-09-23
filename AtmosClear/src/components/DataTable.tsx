@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import fetchSensorData from './GetData.tsx';
+import fetchData from './GetData.tsx';
 import { isValidDate, formatDateTime } from './DateTime.tsx';
 
 interface TableProps {
@@ -15,8 +15,8 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
   const [columnNames, setColumnNames] = useState<string[]>([]);
 
   useEffect(() => {
-    async function fetchData() {
-      const data = await fetchSensorData(url);
+    async function fetchList() {
+      const data = await fetchData(url);
       const list = data.map((item: any) => ({
         values: Object.keys(item).filter(key => key !== 'Id').map(key => item[key])
       }));
@@ -32,9 +32,9 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
       setColumnNames(columnNames);
     }
 
-    fetchData(); // Initial fetch
+    fetchList(); // Initial fetch
 
-    const intervalId = setInterval(fetchData, refreshInterval); // Set up interval
+    const intervalId = setInterval(fetchList, refreshInterval); // Set up interval
 
     return () => clearInterval(intervalId); // Clean up interval on component unmount
   }, [url, refreshInterval]);
