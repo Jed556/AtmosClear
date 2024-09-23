@@ -7,7 +7,7 @@ import Sidebar from '../components/Sidebar'
 import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
 
-export default function Dashboard() {
+export default function History() {
     return (
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,11 +18,11 @@ export default function Dashboard() {
                 {/* <!-- Sidebar Section --> */}
                 <Sidebar items={[
                     { icon: "dashboard", label: "Dashboard", href: "dashboard" },
-                    { icon: "insights", label: "Analytics", href: "#" },
-                    { icon: "receipt_long", label: "History", href: "#", active: true },
-                    { icon: "report_gmailerrorred", label: "Reports", href: "#" },
-                    { icon: "settings", label: "Settings", href: "#" },
-                    { icon: "logout", label: "Logout", href: "#" }
+                    { icon: "insights", label: "Analytics", href: "analytics" },
+                    { icon: "receipt_long", label: "History", href: "history", active: true },
+                    { icon: "report_gmailerrorred", label: "Reports", href: "reports" },
+                    { icon: "settings", label: "Settings", href: "settings" },
+                    { icon: "logout", label: "Logout", href: "login" }
                 ]} />
                 {/* <!-- End of Sidebar Section --> */}
 

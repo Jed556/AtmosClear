@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import Analytics from './pages/Analytics';
 import History from './pages/History'
 import Reports from './pages/Reports';
+import Map from './pages/Map'
 
 
 export default function App() {
@@ -21,6 +22,8 @@ export default function App() {
         <Route path='/analytics' element={<Analytics />} />
         <Route path='/history' element={<History />} />
         <Route path='/reports' element={<Reports />} />
+        <Route path='/map' element={<Map />} />
+
       </Routes>
     </Router>
   )

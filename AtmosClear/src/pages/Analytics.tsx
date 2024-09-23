@@ -1,9 +1,5 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import { server } from '../config'
 import { getAPI } from '../components/Server'
-import '../App.css'
 
 import DataTable from '../components/DataTable'
 import PercentageBlock from '../components/PercentageBlock'
@@ -12,15 +8,7 @@ import Sidebar from '../components/Sidebar'
 import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
 
-export default function Dashboard() {
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        // if (!loggedInUser) {
-        //     navigate('/login');
-        // }
-    }, []);
+export default function Analytics() {
     return (
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,8 +18,8 @@ export default function Dashboard() {
             <div className="container">
                 {/* <!-- Sidebar Section --> */}
                 <Sidebar items={[
-                    { icon: "dashboard", label: "Dashboard", href: "dashboard", active: true },
-                    { icon: "insights", label: "Analytics", href: "analytics" },
+                    { icon: "dashboard", label: "Dashboard", href: "dashboard"},
+                    { icon: "insights", label: "Analytics", href: "analytics", active: true  },
                     { icon: "receipt_long", label: "History", href: "history" },
                     { icon: "report_gmailerrorred", label: "Reports", href: "reports" },
                     { icon: "settings", label: "Settings", href: "settings" },
@@ -41,7 +29,7 @@ export default function Dashboard() {
 
                 {/* <!-- Main Content --> */}
                 <main>
-                    <h1>Dashboard</h1>
+                    <h1>Analytics</h1>
                     {/* <!-- Analyses --> */}
                     <div className="analyse">
                         <PercentageBlock list={[
@@ -53,10 +41,6 @@ export default function Dashboard() {
                         ]} />
                     </div>
                     {/* <!-- End of Analyses --> */}
-
-                    {/* <!-- Recent Data Table --> */}
-                    <DataTable url={getAPI(server, "api/get/history.php")} className='recent-data' title='Recent Data' />
-                    {/* <!-- End of Recent Orders --> */}
 
                 </main>
                 {/* <!-- End of Main Content --> */}
@@ -80,8 +64,7 @@ export default function Dashboard() {
 
                         <div className="profile">
                             <div className="info">
-                                <p>{['Hey', 'Hi', 'Hello'][Math.floor(Math.random() * 3)]}, <b>{(localStorage.getItem('loggedInUser') && JSON.parse(localStorage.getItem('loggedInUser') as string).Username) || "Guest"}
-                                </b></p>
+                                <p>Hey, <b>Jed</b></p>
                                 <small className="text-muted">Admin</small>
                             </div>
                             <div className="profile-photo">

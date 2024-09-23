@@ -642,7 +642,7 @@ main .recent-data a {
     }
 
     aside .sidebar {
-        box-shadow: none ;
+        box-shadow: none;
         height: 95vh;
     }
 
@@ -727,4 +727,114 @@ main .recent-data a {
         font-size: 2rem;
     }
 
+}
+
+/* Login Form Styles */
+.intro-form .intro-form-title {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.intro-form .intro-bot-text {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.intro-form .intro-bot-text a {
+    color: #167bff;
+    text-decoration: none;
+}
+
+.intro-bot-text a:hover {
+    text-decoration: underline;
+}
+
+.intro-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto auto auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    border-radius: 15px;
+    transition: all 0.3s;
+}
+
+.intro-form .intro-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.intro-form .form-group {
+    margin-bottom: 15px;
+}
+
+.intro-form .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #167bff;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.intro-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.intro-form .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.intro-form .form-group input:focus {
+    border-color: #167bff;
+    box-shadow: none;
+}
+
+.intro-form .btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #167bff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.intro-form .btn:hover {
+    background-color: #0a5dc2;
+}
+
+.intro-form .forgot-password {
+    text-align: right;
+    font-size: 13px;
+    padding-top: 10px;
+    color: #7f7d7d;
+}
+
+.intro-form .forgot-password a {
+    color: #167bff;
+    text-decoration: none;
+}
+
+.intro-form .forgot-password a:hover {
+    text-decoration: underline;
 }
