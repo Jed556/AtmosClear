@@ -7,23 +7,33 @@ import Popup from '../components/Popup'
 
 import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
+import Darkmode from '../components/Darkmode'
 
 export default function History() {
     Popup(getAPI(server, "AtmosClear/atmosclear_data.php"), 3000);
+
+    const handleToggleSidebar = () => {
+        if (localStorage.getItem('sidebarOpen') === 'true') {
+            localStorage.setItem('sidebarOpen', 'false');
+        } else {
+            localStorage.setItem('sidebarOpen', 'true');
+        }
+    };
 
     return (
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-            <title>Dashboard</title>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
 
-            <div className="container">
+            <title>History</title>
+
+            <div className={localStorage.getItem('isDarkMode') ? 'container dark-mode' : 'container'}>
                 {/* <!-- Sidebar Section --> */}
                 <Sidebar items={[
                     { icon: "dashboard", label: "Dashboard", href: "dashboard" },
-                    { icon: "insights", label: "Analytics", href: "analytics" },
                     { icon: "receipt_long", label: "History", href: "history", active: true },
-                    { icon: "report_gmailerrorred", label: "Reports", href: "reports" },
+                    { icon: "report_gmailerrorred", label: "Health Risk", href: "risks" },
                     { icon: "settings", label: "Settings", href: "settings" },
                     { icon: "logout", label: "Logout", href: "login" }
                 ]} />
@@ -43,19 +53,14 @@ export default function History() {
                 {/* <!-- Right Section --> */}
                 <div className="right-section">
                     <div className="nav">
-                        <button id="menu-btn">
+                        <button id="menu-btn" onClick={handleToggleSidebar}>
+
                             <span className="material-icons-sharp">
                                 menu
                             </span>
                         </button>
-                        <div className="dark-mode">
-                            <span className="material-icons-sharp active">
-                                light_mode
-                            </span>
-                            <span className="material-icons-sharp">
-                                dark_mode
-                            </span>
-                        </div>
+               
+                        <Darkmode />
 
                         <div className="profile">
                             <div className="info">

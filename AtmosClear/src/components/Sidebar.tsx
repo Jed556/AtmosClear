@@ -1,5 +1,6 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
 import logo from '../assets/images/logo.png';
 
 interface SidebarItem {
@@ -17,8 +18,30 @@ interface SidebarProps {
 export default function Sidebar({ items, onItemSelect }: SidebarProps) {
     const [isOpen, setIsOpen] = useState(true);
 
-    const handleToggle = () => {
-        setIsOpen(!isOpen);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const sidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
+            if (sidebarOpen !== isOpen) {
+                setIsOpen(sidebarOpen);
+            }
+
+            const screenWidth = window.innerWidth;
+            if (screenWidth > 768) {
+                localStorage.setItem('sidebarOpen', 'true');
+            }
+        }, 10);
+
+        return () => clearInterval(interval);
+    }, [isOpen]);
+
+    const handleToggleSidebar = () => {
+        if (localStorage.getItem('sidebarOpen') === 'true') {
+            localStorage.setItem('sidebarOpen', 'false');
+            setIsOpen(false);
+        } else {
+            localStorage.setItem('sidebarOpen', 'true');
+            setIsOpen(true);
+        }
     };
 
     const handleItemClick = (label: string) => {
@@ -31,15 +54,15 @@ export default function Sidebar({ items, onItemSelect }: SidebarProps) {
     };
 
     return (
-        <aside style={{ display: isOpen ? 'block' : 'none' }}>
+        <aside className={isOpen ? '' : 'hide'}>
             <div className="toggle">
                 <div className="logo">
                     <img src={logo} />
                     <h2>Atmos<span className="primary">Clear</span></h2>
                 </div>
-                <div className="close" id="close-btn" onClick={handleToggle}>
-                    <span className="material-icons-sharp">
-                        close
+                <div className="close" id="close-btn" onClick={handleToggleSidebar}>
+                    <span className="material-symbols-outlined">
+                        arrow_circle_left
                     </span>
                 </div>
             </div>

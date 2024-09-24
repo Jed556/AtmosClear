@@ -1,21 +1,20 @@
-import './PercentageBlock.css';
 
-interface PercentageBlockProps {
-    list: { label: string, color: 'red' | 'green' | 'blue', percentage: number, value: number }[];
+interface ContentBlockProps {
+    list: { label: string, content: string }[];
 }
 
-function PercentageBlock({ list }: PercentageBlockProps) {
+function PercentageBlock({ list }: ContentBlockProps) {
     return (
         <>
             {list.map((item, index) => (
-                <div key={index} className={item.color}>
+                <div key={index} className="content-block">
                     <div className="status">
                         <div className="info">
                             <h3>{item.label}</h3>
-                            <h1>{item.value}</h1>
+                            <h1>{item.content}</h1>
                         </div>
                     </div>
-                </div >
+                </div>
             ))
             }
         </>

@@ -6,20 +6,27 @@ import { getAPI } from '../components/Server'
 import '../App.css'
 
 import DataTable from '../components/DataTable'
-import PercentageBlock from '../components/PercentageBlock'
 import Sidebar from '../components/Sidebar'
 import Popup from '../components/Popup';
-import fetchData from '../components/GetData';
 import PercentageBlocks from '../components/PercentageBlocks'
 
 
 import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
+import Darkmode from '../components/Darkmode';
 
 
 export default function Dashboard() {
 
     Popup(getAPI(server, "AtmosClear/atmosclear_data.php"), 3000);
+
+    const handleToggleSidebar = () => {
+        if (localStorage.getItem('sidebarOpen') === 'true') {
+            localStorage.setItem('sidebarOpen', 'false');
+        } else {
+            localStorage.setItem('sidebarOpen', 'true');
+        }
+    };
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -33,15 +40,16 @@ export default function Dashboard() {
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
+
             <title>Dashboard</title>
 
-            <div className="container">
+            <div className={localStorage.getItem('isDarkMode') ? 'container dark-mode' : 'container'}>
                 {/* <!-- Sidebar Section --> */}
                 <Sidebar items={[
                     { icon: "dashboard", label: "Dashboard", href: "dashboard", active: true },
-                    { icon: "insights", label: "Analytics", href: "analytics" },
                     { icon: "receipt_long", label: "History", href: "history" },
-                    { icon: "report_gmailerrorred", label: "Reports", href: "reports" },
+                    { icon: "report_gmailerrorred", label: "Health Risk", href: "risks" },
                     { icon: "settings", label: "Settings", href: "settings" },
                     { icon: "logout", label: "Logout", href: "login" }
                 ]} />
@@ -65,19 +73,12 @@ export default function Dashboard() {
                 {/* <!-- Right Section --> */}
                 <div className="right-section">
                     <div className="nav">
-                        <button id="menu-btn">
+                        <button id="menu-btn" onClick={handleToggleSidebar}>
                             <span className="material-icons-sharp">
                                 menu
                             </span>
                         </button>
-                        <div className="dark-mode">
-                            <span className="material-icons-sharp active">
-                                light_mode
-                            </span>
-                            <span className="material-icons-sharp">
-                                dark_mode
-                            </span>
-                        </div>
+                        <Darkmode />
 
                         <div className="profile">
                             <div className="info">
@@ -98,6 +99,7 @@ export default function Dashboard() {
                             <img src={logo} />
                             <h2>AtmosClear</h2>
                             <p>Purifying the Air, One Breath at a Time</p>
+                            <p className="credits">A DOST hack4aprogress 2024 project</p>
                         </div>
                     </div>
 

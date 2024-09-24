@@ -41,6 +41,8 @@ export default function Register() {
     return (
         <>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+
             <title>Register</title>
 
             <div className="analyse">

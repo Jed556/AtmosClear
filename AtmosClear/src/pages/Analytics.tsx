@@ -9,19 +9,28 @@ import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
 
 export default function Analytics() {
+    const handleToggleSidebar = () => {
+        if (localStorage.getItem('sidebarOpen') === 'true') {
+            localStorage.setItem('sidebarOpen', 'false');
+        } else {
+            localStorage.setItem('sidebarOpen', 'true');
+        }
+    };
     return (
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+
             <title>Dashboard</title>
 
             <div className="container">
                 {/* <!-- Sidebar Section --> */}
                 <Sidebar items={[
-                    { icon: "dashboard", label: "Dashboard", href: "dashboard"},
-                    { icon: "insights", label: "Analytics", href: "analytics", active: true  },
+                    { icon: "dashboard", label: "Dashboard", href: "dashboard", active: true },
+                    { icon: "insights", label: "Analytics", href: "analytics" },
                     { icon: "receipt_long", label: "History", href: "history" },
-                    { icon: "report_gmailerrorred", label: "Reports", href: "reports" },
+                    { icon: "report_gmailerrorred", label: "Health Risk", href: "risks" },
                     { icon: "settings", label: "Settings", href: "settings" },
                     { icon: "logout", label: "Logout", href: "login" }
                 ]} />
@@ -32,13 +41,6 @@ export default function Analytics() {
                     <h1>Analytics</h1>
                     {/* <!-- Analyses --> */}
                     <div className="analyse">
-                        <PercentageBlock list={[
-                            { label: "Cleanliness", color: "green", percentage: 75, value: 125 },
-                            { label: "Temperature", color: "blue", percentage: 75, value: 28 },
-                            { label: "Humidity", color: "green", percentage: 75, value: 122 },
-                            { label: "PM2.5", color: "blue", percentage: 75, value: 11 },
-                            { label: "DHT22", color: "red", percentage: 75, value: 15 },
-                        ]} />
                     </div>
                     {/* <!-- End of Analyses --> */}
 
@@ -48,7 +50,8 @@ export default function Analytics() {
                 {/* <!-- Right Section --> */}
                 <div className="right-section">
                     <div className="nav">
-                        <button id="menu-btn">
+                        <button id="menu-btn" onClick={handleToggleSidebar}>
+
                             <span className="material-icons-sharp">
                                 menu
                             </span>

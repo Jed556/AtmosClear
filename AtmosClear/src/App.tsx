@@ -3,25 +3,28 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
-import Analytics from './pages/Analytics';
 import History from './pages/History';
-import Reports from './pages/Reports';
+import Risks from './pages/Risks';
 import Map from './pages/Map'
 
 
 export default function App() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 768) {
+    localStorage.setItem('sidebarOpen', 'false');
+  }
 
   return (
     <Router>
       <Routes>
         <Route path='*' element={<Navigate to="/dashboard" />} />
 
+
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/analytics' element={<Analytics />} />
         <Route path='/history' element={<History />} />
-        <Route path='/reports' element={<Reports />} />
+        <Route path='/risks' element={<Risks />} />
         <Route path='/map' element={<Map />} />
 
       </Routes>

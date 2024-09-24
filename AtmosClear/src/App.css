@@ -475,6 +475,11 @@ main .recent-data a {
     margin-bottom: 0.2rem;
 }
 
+.right-section .user-profile .credits {
+    padding: 10px;
+    font-size: xx-small;
+}
+
 .right-section .reminders {
     margin-top: 2rem;
 }
@@ -599,8 +604,8 @@ main .recent-data a {
     } */
 
     main .recent-data table {
-        position: absolute;
-        width: 80vw;
+        position: relative;
+        width: 100%;
     }
 
     /* main table thead tr th:last-child,
@@ -623,21 +628,37 @@ main .recent-data a {
     }
 
     aside {
+        display: block;
         position: fixed;
         background-color: var(--color-white);
-        width: 15rem;
+        width: 17rem;
         z-index: 3;
         box-shadow: 1rem 3rem 4rem var(--color-light);
         height: 100vh;
         left: -100%;
-        display: none;
         animation: showMenu 0.4s ease forwards;
     }
 
     @keyframes showMenu {
+        from {
+            left: -100%;
+        }
         to {
             left: 0;
         }
+    }
+
+    @keyframes hideMenu {
+        from {
+            left: 0;
+        }
+        to {
+            left: -100%;
+        }
+    }
+
+    aside.hide {
+        animation: hideMenu 0.4s ease backwards;
     }
 
     aside .logo {
@@ -668,6 +689,8 @@ main .recent-data a {
     }
 
     aside .toggle .close {
+        padding-right: 20px;
+        padding-top: 3px;
         display: inline-block;
         cursor: pointer;
     }
@@ -762,7 +785,7 @@ main .recent-data a {
     max-width: 400px;
     margin: 100px auto auto auto;
     padding: 20px;
-    background: #ffffff;
+    background: var(--color-white);;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
     border-radius: 15px;
     transition: all 0.3s;
@@ -849,7 +872,6 @@ main .recent-data a {
 .popup-container {
     border-radius: 15px;
     padding: 20px;
-    background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: fixed;
     /* Use fixed positioning to center it relative to the viewport */
@@ -871,4 +893,40 @@ main .recent-data a {
 
 .popup-name {
     font-size: 16px;
+}
+
+.intervention-container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.intervention-card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(50% - 20px);
+    box-sizing: border-box;
+}
+
+.intervention-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.intervention-body {
+    font-size: 0.9em;
+}
+
+.action,
+.school,
+.car,
+.mask,
+.age-group,
+.impact {
+    margin-bottom: 5px;
 }
