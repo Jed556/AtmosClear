@@ -5,6 +5,8 @@ import { server } from '../config'
 import { getAPI } from '../components/Server'
 import '../App.css'
 
+import Swal from 'sweetalert2';
+
 import DataTable from '../components/DataTable'
 import PercentageBlock from '../components/PercentageBlock'
 import Sidebar from '../components/Sidebar'
@@ -16,6 +18,8 @@ import Popup from '../components/Popup';
 
 export default function Dashboard() {
     const navigate = useNavigate();
+
+    Popup(getAPI(server, "AtmosClear/atmosclear_data.php"), 3000);
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem('loggedInUser');

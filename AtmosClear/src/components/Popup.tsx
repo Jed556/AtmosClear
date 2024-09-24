@@ -1,74 +1,72 @@
 import { useEffect, useState } from 'react';
 import fetchData from './GetData';
+import Swal from 'sweetalert2';
+import checkAirQuality from './AirQuality';
 
-interface PopupProps {
-    url: string;
-    type: number;
-    refreshInterval?: number;
-}
-
-const Popup: React.FC<PopupProps> = ({ url, type, refreshInterval = 3000 }) => {
+export default function Popup(url: string, refreshInterval = 3000) {
     const [atmosclearData, setAtmosclearData] = useState<any>(null);
+    const [data, setData] = useState<any[]>([]);
     const [list, setList] = useState<any[]>([]);
     const [columnNames, setColumnNames] = useState<string[]>([]);
-    const [logo, setLogo] = useState<string>("");
 
     useEffect(() => {
         async function fetchList() {
-            const data = await fetchData(url);
-            const list = data.map((item: any) => ({
-                values: Object.keys(item).filter(key => key !== 'Id').map(key => item[key])
+            setData(await fetchData(url));
+
+            const airQualityList = data.map((item) => ({
+                id: item.id,
+                pm25: item.pm25,
+                location: item.location,
+                timestamp: item.timestamp,
             }));
-            const columnNames = [...Object.keys(data[0]).filter(key => key !== 'Id')];
-
-            const sortedList = [...list].sort((a, b) => {
-                const dateA = new Date(a.values[0]);
-                const dateB = new Date(b.values[0]);
-                return dateB.getTime() - dateA.getTime(); // Descending order
-            });
-
-            setList(sortedList);
-            setColumnNames(columnNames);
+            setList(airQualityList);
         }
 
         fetchList();
 
+        let Popup = {};
+        let type = checkAirQuality(list);
+
         switch (type) {
-            case 0:
-                setLogo("info");
-                break;
             case 1:
-                setLogo("info");
+                Popup = {
+                    icon: "error",
+                    title: "Dangerous",
+                    text: "Dangerous levels of PM2.5 detected!",
+                    footer: '<a href="#">See Interventions</a>'
+                }
                 break;
             case 2:
-                setLogo("warning");
+                Popup = {
+                    icon: "warning",
+                    title: "Warning",
+                    text: "Warning: PM2.5 levels are high.",
+                    footer: '<a href="#">See Interventions</a>'
+                }
                 break;
             case 3:
-                setLogo();
+                Popup = {
+                    icon: "error",
+                    title: "Information",
+                    text: "PM2.5 levels are normal.",
+                    footer: '<a href="#">See Interventions</a>'
+                }
                 break;
             case 4:
-                logo = "dangerous";
+                Popup = {
+                    icon: "error",
+                    title: "Success",
+                    text: "PM2.5 levels are low.",
+                    footer: '<a href="#">See Interventions</a>'
+                }
                 break;
-            default:
-                logo = "info";
-                break;
+
         }
+        Swal.fire(Popup);
 
         const intervalId = setInterval(fetchList, refreshInterval); // Set up interval
 
         return () => clearInterval(intervalId);
-    }, [url, refreshInterval, type]);
-
-    return (
-        <div className="popup-container">
-            <div className="icon">
-                <span className="material-icons-sharp">
-                    {logo}
-                </span>
-            </div>
-            <p className="popup-name">{atmosclearData ? atmosclearData.name : 'Loading...'}</p>
-        </div>
-    );
+    }, [url, refreshInterval]);
+    return;
 };
-
-export default Popup;

@@ -3,6 +3,7 @@ import { getAPI } from '../components/Server';
 import { server } from '../config';
 import fetchData from '../components/GetData';
 import postData from '../components/PostData';
+import PercentageBlock from '../components/PercentageBlock';
 
 export default function Register() {
     const [username, setUsername] = useState('');
@@ -41,6 +42,17 @@ export default function Register() {
         <>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
             <title>Register</title>
+
+            <div className="analyse">
+                <PercentageBlock list={[
+                    { label: "Cleanliness", color: "green", percentage: 75, value: 125 },
+                    { label: "Temperature", color: "blue", percentage: 75, value: 28 },
+                    { label: "Humidity", color: "green", percentage: 75, value: 122 },
+                    { label: "PM2.5", color: "blue", percentage: 75, value: 11 },
+                    { label: "DHT22", color: "red", percentage: 75, value: 15 },
+                ]} />
+            </div>
+
             <main>
                 <form className="intro-form" onSubmit={handleSubmit}>
                     <h1 className="intro-form-title">AtmosClear</h1>

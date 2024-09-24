@@ -458,10 +458,12 @@ main .recent-data a {
 }
 
 .right-section .user-profile img {
-    width: 11rem;
+    display: block;
+    margin: 0 auto;
+    width: 10rem;
     height: auto;
+    left: 5%;
     margin-bottom: 0.8rem;
-    border-radius: 50%;
 }
 
 .right-section .user-profile h2 {

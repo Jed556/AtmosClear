@@ -51,13 +51,13 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
           </tr>
         </thead>
         <tbody>
-          {list.slice(0, maxRows === 0 ? list.length : maxRows).map((item: any, rowIndex: number) => (
+            {list.slice(0, maxRows === 0 ? list.length : maxRows).map((item: any, rowIndex: number) => (
             <tr key={rowIndex}>
               {item.values.map((value: any, colIndex: number) => (
-                <td key={colIndex}>{colIndex === 0 && isValidDate(value) ? formatDateTime(value) : value}</td>
+              <td key={colIndex}>{value}</td>
               ))}
             </tr>
-          ))}
+            ))}
         </tbody>
       </table>
       {maxRows !== 0 && list.length > maxRows && (
