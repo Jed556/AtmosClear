@@ -12,6 +12,8 @@ import Sidebar from '../components/Sidebar'
 import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
 
+import Popup from '../components/Popup';
+
 export default function Dashboard() {
     const navigate = useNavigate();
 
@@ -55,7 +57,7 @@ export default function Dashboard() {
                     {/* <!-- End of Analyses --> */}
 
                     {/* <!-- Recent Data Table --> */}
-                    <DataTable url={getAPI(server, "api/get/history.php")} className='recent-data' title='Recent Data' />
+                    <DataTable url={getAPI(server, "AtmosClear/atmosclear_data.php")} className='recent-data' title='Recent Data' maxRows={9} />
                     {/* <!-- End of Recent Orders --> */}
 
                 </main>

@@ -838,3 +838,30 @@ main .recent-data a {
 .intro-form .forgot-password a:hover {
     text-decoration: underline;
 }
+
+.popup-container {
+    border-radius: 15px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    /* Use fixed positioning to center it relative to the viewport */
+    top: 50%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Offset by 50% of its own width and height */
+    text-align: center;
+    z-index: 1000;
+    /* Ensure it appears above other elements */
+}
+
+.icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.popup-name {
+    font-size: 16px;
+}
