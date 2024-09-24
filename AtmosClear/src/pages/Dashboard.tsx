@@ -11,7 +11,7 @@ import Popup from '../components/Popup';
 import PercentageBlocks from '../components/PercentageBlocks'
 
 
-import profileImage from '../assets/images/profile-1.jpg';
+import profileImage from '../assets/images/user.png';
 import logo from '../assets/images/logo.png';
 import Darkmode from '../components/Darkmode';
 
@@ -38,10 +38,6 @@ export default function Dashboard() {
 
     return (
         <>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-            <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
-
             <title>Dashboard</title>
 
             <div className={localStorage.getItem('isDarkMode') ? 'container dark-mode' : 'container'}>
@@ -65,7 +61,7 @@ export default function Dashboard() {
                     {/* <!-- End of Analyses --> */}
 
                     {/* <!-- Recent Data Table --> */}
-                    <DataTable url={getAPI(server, "AtmosClear/atmosclear_data.php")} className='recent-data' title='Data Log' maxRows={8} />
+                    <DataTable url={getAPI(server, "AtmosClear/atmosclear_data.php")} className='recent-data' title='Data Log' maxRows={8} customNames={["Date & Time", "PM1", "PM10", "PM2.5", "Humidity", "Temperature", "MQ2"]} />
                     {/* <!-- End of Recent Orders --> */}
                 </main>
                 {/* <!-- End of Main Content --> */}
@@ -82,9 +78,8 @@ export default function Dashboard() {
 
                         <div className="profile">
                             <div className="info">
-                                <p>{['Hey', 'Hi', 'Hello'][Math.floor(Math.random() * 3)]}, <b>{(localStorage.getItem('loggedInUser') && JSON.parse(localStorage.getItem('loggedInUser') as string).Username) || "Guest"}
-                                </b></p>
-                                <small className="text-muted">Admin</small>
+                                <p>{['Hey', 'Hi', 'Hello'][Math.floor(Math.random() * 3)]} <b>{localStorage.getItem('loggedInUser') ? (localStorage.getItem('loggedInUser') && JSON.parse(localStorage.getItem('loggedInUser') as string).Username) : ""}             </b></p>
+                                <small className="text-muted">{localStorage.getItem('loggedInUser') ? "Admin" : "Guest"}</small>
                             </div>
                             <div className="profile-photo">
                                 <img src={profileImage} />
@@ -154,7 +149,7 @@ export default function Dashboard() {
                                 <span className="material-icons-sharp">
                                     add
                                 </span>
-                                <h3>Add Reminder</h3>
+                                <h3>New Ticket</h3>
                             </div>
                         </div>
 

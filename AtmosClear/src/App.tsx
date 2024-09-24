@@ -15,19 +15,20 @@ export default function App() {
   }
 
   return (
-    <Router>
-      <Routes>
-        <Route path='*' element={<Navigate to="/dashboard" />} />
-
-
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/history' element={<History />} />
-        <Route path='/risks' element={<Risks />} />
-        <Route path='/map' element={<Map />} />
-
-      </Routes>
-    </Router>
+    <>
+      {screenWidth && (
+        <Router>
+          <Routes>
+            <Route path='*' element={<Navigate to="/dashboard" />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/history' element={<History />} />
+            <Route path='/risks' element={<Risks />} />
+            <Route path='/map' element={<Map />} />
+          </Routes>
+        </Router>
+      )}
+    </>
   )
 }

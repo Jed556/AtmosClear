@@ -5,12 +5,13 @@ import { isValidDate, formatDateTime } from './DateTime.tsx';
 interface TableProps {
   url: string;
   className: string;
+  customNames?: string[];
   title: string;
   maxRows?: number;
   refreshInterval?: number; // Add an optional refresh interval prop
 }
 
-export default function DataTable({ url, className, title, maxRows = 10, refreshInterval = 1000 }: TableProps) {
+export default function DataTable({ url, className, customNames, title, maxRows = 0, refreshInterval = 1000 }: TableProps) {
   const [list, setList] = useState<any[]>([]);
   const [columnNames, setColumnNames] = useState<string[]>([]);
 
@@ -22,7 +23,10 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
       const list = data.map((item: any) => ({
         values: Object.keys(item).filter(key => key !== 'Id').map(key => item[key])
       }));
-      const columnNames = [...Object.keys(data[0]).filter(key => key !== 'Id')];
+
+      const columnNames = customNames && customNames.length > 0
+        ? customNames
+        : [...Object.keys(data[0]).filter(key => key !== 'Id')];
 
       const sortedList = [...list].sort((a, b) => {
         const dateA = new Date(a.values[0]);
@@ -53,13 +57,13 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
           </tr>
         </thead>
         <tbody>
-            {list.slice(0, maxRows === 0 ? list.length : maxRows).map((item: any, rowIndex: number) => (
+          {list.slice(0, maxRows === 0 ? list.length : maxRows).map((item: any, rowIndex: number) => (
             <tr key={rowIndex}>
               {item.values.map((value: any, colIndex: number) => (
-              <td key={colIndex}>{value}</td>
+                <td key={colIndex}>{value}</td>
               ))}
             </tr>
-            ))}
+          ))}
         </tbody>
       </table>
       {maxRows !== 0 && list.length > maxRows && (

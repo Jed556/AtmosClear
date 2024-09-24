@@ -9,7 +9,7 @@ import Sidebar from '../components/Sidebar'
 import Popup from '../components/Popup';
 
 
-import profileImage from '../assets/images/profile-1.jpg';
+import profileImage from '../assets/images/user.png';
 import logo from '../assets/images/logo.png';
 import Darkmode from '../components/Darkmode';
 
@@ -241,7 +241,7 @@ export default function Risks() {
                                 <span className="material-icons-sharp">
                                     add
                                 </span>
-                                <h3>Add Reminder</h3>
+                                <h3>New Ticket</h3>
                             </div>
                         </div>
 

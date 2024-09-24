@@ -5,7 +5,7 @@ import DataTable from '../components/DataTable'
 import Sidebar from '../components/Sidebar'
 import Popup from '../components/Popup'
 
-import profileImage from '../assets/images/profile-1.jpg';
+import profileImage from '../assets/images/user.png';
 import logo from '../assets/images/logo.png';
 import Darkmode from '../components/Darkmode'
 
@@ -22,10 +22,6 @@ export default function History() {
 
     return (
         <>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-
             <title>History</title>
 
             <div className={localStorage.getItem('isDarkMode') ? 'container dark-mode' : 'container'}>
@@ -44,7 +40,7 @@ export default function History() {
                     <h1>History</h1>
 
                     {/* <!-- Recent Data Table --> */}
-                    <DataTable url={getAPI(server, "AtmosClear/atmosclear_data.php")} className='recent-data' title='Data Log' maxRows={200} />
+                    <DataTable url={getAPI(server, "AtmosClear/atmosclear_data.php")} className='recent-data' title='Data Log' customNames={["Date & Time", "PM1", "PM10", "PM2.5","Humidity","Temperature","MQ2"]} />
                     {/* <!-- End of Recent Orders --> */}
 
                 </main>
@@ -59,7 +55,7 @@ export default function History() {
                                 menu
                             </span>
                         </button>
-               
+
                         <Darkmode />
 
                         <div className="profile">
@@ -134,7 +130,7 @@ export default function History() {
                                 <span className="material-icons-sharp">
                                     add
                                 </span>
-                                <h3>Add Reminder</h3>
+                                <h3>New Ticket</h3>
                             </div>
                         </div>
 

@@ -5,7 +5,7 @@ import DataTable from '../components/DataTable'
 import PercentageBlock from '../components/PercentageBlock'
 import Sidebar from '../components/Sidebar'
 
-import profileImage from '../assets/images/profile-1.jpg';
+import profileImage from '../assets/images/user.png';
 import logo from '../assets/images/logo.png';
 
 export default function Analytics() {
@@ -137,7 +137,7 @@ export default function Analytics() {
                                 <span className="material-icons-sharp">
                                     add
                                 </span>
-                                <h3>Add Reminder</h3>
+                                <h3>New Ticket</h3>
                             </div>
                         </div>
 

@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar'
 import Popup from '../components/Popup';
 
 
-import profileImage from '../assets/images/profile-1.jpg';
+import profileImage from '../assets/images/user.png';
 import logo from '../assets/images/logo.png';
 import Darkmode from '../components/Darkmode';
 
@@ -35,10 +35,6 @@ export default function Risks() {
 
     return (
         <>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-
             <title>Intervention</title>
 
             <div className={localStorage.getItem('isDarkMode') ? 'container dark-mode' : 'container'}>
@@ -241,7 +237,7 @@ export default function Risks() {
                                 <span className="material-icons-sharp">
                                     add
                                 </span>
-                                <h3>Add Reminder</h3>
+                                <h3>New Ticket</h3>
                             </div>
                         </div>
 

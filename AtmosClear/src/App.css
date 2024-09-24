@@ -446,7 +446,7 @@ main .recent-data a {
 }
 
 .right-section .user-profile {
-    display: flex;
+    display: fixed;
     justify-content: center;
     text-align: center;
     margin-top: 1rem;
@@ -454,7 +454,7 @@ main .recent-data a {
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
-    cursor: pointer;
+    /* cursor: pointer; */
     transition: all 0.3s ease;
 }
 
