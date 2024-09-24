@@ -3,70 +3,73 @@ import fetchData from './GetData';
 import Swal from 'sweetalert2';
 import checkAirQuality from './AirQuality';
 
-export default function Popup(url: string, refreshInterval = 3000) {
-    const [atmosclearData, setAtmosclearData] = useState<any>(null);
-    const [data, setData] = useState<any[]>([]);
-    const [list, setList] = useState<any[]>([]);
-    const [columnNames, setColumnNames] = useState<string[]>([]);
+export default function Popup(url: string, refreshInterval = 20000) {
+    const [dismissed, setDismissed] = useState(true);
+    let interval = refreshInterval;
 
     useEffect(() => {
-        async function fetchList() {
-            setData(await fetchData(url));
+        async function checkAlert() {
+            const data = await fetchData(url);
 
-            const airQualityList = data.map((item) => ({
-                id: item.id,
-                pm25: item.pm25,
-                location: item.location,
-                timestamp: item.timestamp,
-            }));
-            setList(airQualityList);
+            console.log(data);
+
+            const latestData = data[data.length - 1];
+            const airQualityList = {
+                pm1: latestData.pm1,
+                pm25: latestData.pm2_5,
+                pm10: latestData.pm10,
+                mq2: latestData.MQ2value
+            };
+            console.log(airQualityList)
+
+            let type = checkAirQuality(airQualityList);
+            console.log(type);
+
+            switch (type) {
+                case 0:
+                    Swal.fire({
+                        icon: "success",
+                        title: "Good",
+                        text: "Air quality is good. No immediate health risks.",
+                        footer: '<a href="reports#good">See Interventions</a>'
+                    }).then((stat) => { setDismissed(stat.isDismissed) });
+                    break;
+                case 1:
+                    Swal.fire({
+                        icon: "success",
+                        title: "Moderate",
+                        text: "Air quality is okay. No immediate health risks.",
+                        footer: '<a href="reports#good">See Interventions</a>'
+                    }).then((stat) => { setDismissed(stat.isDismissed) });
+                    break;
+                case 2:
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Unhealthy for Sensitive Groups",
+                        text: "Air quality is unhealthy for sensitive groups. Take precautions.",
+                        footer: '<a href="reports#someunhealthy">See Interventions</a>'
+                    }).then((stat) => { setDismissed(stat.isDismissed) });
+                    break;
+                case 3:
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Very Unhealthy",
+                        text: "Air quality is very unhealthy. Avoid outdoor activities.",
+                        footer: '<a href="reports#unhealthy">See Interventions</a>'
+                    }).then((stat) => { setDismissed(stat.isDismissed) });
+                    break;
+                case 4:
+                    Swal.fire({
+                        icon: "error",
+                        title: "Hazardous",
+                        text: "Air quality is hazardous. Stay indoors and keep windows closed.",
+                        footer: '<a href="reports#hazardous">See Interventions</a>'
+                    }).then((stat) => { setDismissed(stat.isDismissed) });
+                    break;
+            }
         }
 
-        fetchList();
-
-        let Popup = {};
-        let type = checkAirQuality(list);
-
-        switch (type) {
-            case 1:
-                Popup = {
-                    icon: "error",
-                    title: "Dangerous",
-                    text: "Dangerous levels of PM2.5 detected!",
-                    footer: '<a href="#">See Interventions</a>'
-                }
-                break;
-            case 2:
-                Popup = {
-                    icon: "warning",
-                    title: "Warning",
-                    text: "Warning: PM2.5 levels are high.",
-                    footer: '<a href="#">See Interventions</a>'
-                }
-                break;
-            case 3:
-                Popup = {
-                    icon: "error",
-                    title: "Information",
-                    text: "PM2.5 levels are normal.",
-                    footer: '<a href="#">See Interventions</a>'
-                }
-                break;
-            case 4:
-                Popup = {
-                    icon: "error",
-                    title: "Success",
-                    text: "PM2.5 levels are low.",
-                    footer: '<a href="#">See Interventions</a>'
-                }
-                break;
-
-        }
-        Swal.fire(Popup);
-
-        const intervalId = setInterval(fetchList, refreshInterval); // Set up interval
-
-        return () => clearInterval(intervalId);
-    }, [url, refreshInterval]);
+        checkAlert();
+    }, [url, interval]);
     return;
 };

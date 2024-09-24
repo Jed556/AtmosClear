@@ -17,6 +17,8 @@ export default function DataTable({ url, className, title, maxRows = 10, refresh
   useEffect(() => {
     async function fetchList() {
       const data = await fetchData(url);
+      // console.log(data);
+
       const list = data.map((item: any) => ({
         values: Object.keys(item).filter(key => key !== 'Id').map(key => item[key])
       }));

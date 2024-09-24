@@ -1,32 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { server } from '../config'
 import { getAPI } from '../components/Server'
 import '../App.css'
 
-import Swal from 'sweetalert2';
-
 import DataTable from '../components/DataTable'
 import PercentageBlock from '../components/PercentageBlock'
 import Sidebar from '../components/Sidebar'
+import Popup from '../components/Popup';
+import fetchData from '../components/GetData';
+import PercentageBlocks from '../components/PercentageBlocks'
+
 
 import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
 
-import Popup from '../components/Popup';
 
 export default function Dashboard() {
-    const navigate = useNavigate();
 
     Popup(getAPI(server, "AtmosClear/atmosclear_data.php"), 3000);
 
+    const navigate = useNavigate();
     useEffect(() => {
         const loggedInUser = localStorage.getItem('loggedInUser');
         // if (!loggedInUser) {
         //     navigate('/login');
         // }
     }, []);
+
     return (
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,20 +52,13 @@ export default function Dashboard() {
                     <h1>Dashboard</h1>
                     {/* <!-- Analyses --> */}
                     <div className="analyse">
-                        <PercentageBlock list={[
-                            { label: "Cleanliness", color: "green", percentage: 75, value: 125 },
-                            { label: "Temperature", color: "blue", percentage: 75, value: 28 },
-                            { label: "Humidity", color: "green", percentage: 75, value: 122 },
-                            { label: "PM2.5", color: "blue", percentage: 75, value: 11 },
-                            { label: "DHT22", color: "red", percentage: 75, value: 15 },
-                        ]} />
+                        <PercentageBlocks />
                     </div>
                     {/* <!-- End of Analyses --> */}
 
                     {/* <!-- Recent Data Table --> */}
-                    <DataTable url={getAPI(server, "AtmosClear/atmosclear_data.php")} className='recent-data' title='Recent Data' maxRows={9} />
+                    <DataTable url={getAPI(server, "AtmosClear/atmosclear_data.php")} className='recent-data' title='Data Log' maxRows={8} />
                     {/* <!-- End of Recent Orders --> */}
-
                 </main>
                 {/* <!-- End of Main Content --> */}
 

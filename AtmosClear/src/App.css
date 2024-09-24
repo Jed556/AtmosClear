@@ -308,6 +308,7 @@ main .analyse .progress .percentage {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
     height: 100%;
     width: 100%;
 }

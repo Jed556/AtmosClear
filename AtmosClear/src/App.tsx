@@ -4,7 +4,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Analytics from './pages/Analytics';
-import History from './pages/History'
+import History from './pages/History';
 import Reports from './pages/Reports';
 import Map from './pages/Map'
 

@@ -44,13 +44,7 @@ export default function Register() {
             <title>Register</title>
 
             <div className="analyse">
-                <PercentageBlock list={[
-                    { label: "Cleanliness", color: "green", percentage: 75, value: 125 },
-                    { label: "Temperature", color: "blue", percentage: 75, value: 28 },
-                    { label: "Humidity", color: "green", percentage: 75, value: 122 },
-                    { label: "PM2.5", color: "blue", percentage: 75, value: 11 },
-                    { label: "DHT22", color: "red", percentage: 75, value: 15 },
-                ]} />
+
             </div>
 
             <main>

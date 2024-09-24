@@ -3,11 +3,14 @@ import { getAPI } from '../components/Server'
 
 import DataTable from '../components/DataTable'
 import Sidebar from '../components/Sidebar'
+import Popup from '../components/Popup'
 
 import profileImage from '../assets/images/profile-1.jpg';
 import logo from '../assets/images/logo.png';
 
 export default function History() {
+    Popup(getAPI(server, "AtmosClear/atmosclear_data.php"), 3000);
+
     return (
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
