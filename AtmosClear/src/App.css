@@ -283,23 +283,27 @@ main .analyse svg circle {
     transform: translate(5px, 5px);
 }
 
-main .analyse .green svg circle {
+/* main .analyse .green svg circle {
     stroke: var(--color-success);
     stroke-dashoffset: -30;
     stroke-dasharray: 200;
-}
+} */
 
-main .analyse .red svg circle {
+/* main .analyse .red svg circle {
     stroke: var(--color-danger);
     stroke-dashoffset: -30;
-    stroke-dasharray: 100;
-}
+    stroke-dasharray: 200;
+} */
 
-main .analyse .blue svg circle {
+/* main .analyse .blue svg circle {
     stroke: var(--color-primary);
     stroke-dashoffset: -30;
-    stroke-dasharray: 150;
-}
+    stroke-dasharray: 200;
+} */
+
+/* main .analyse svg circle {
+    stroke-dasharray: 200;
+} */
 
 main .analyse .progress .percentage {
     position: absolute;

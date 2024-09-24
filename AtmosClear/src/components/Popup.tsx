@@ -26,7 +26,7 @@ export default function Popup(url: string, refreshInterval = 20000) {
             console.log(type);
 
             switch (type) {
-                case 0:
+                case 10:// disabled
                     Swal.fire({
                         icon: "success",
                         title: "Good",
@@ -34,7 +34,7 @@ export default function Popup(url: string, refreshInterval = 20000) {
                         footer: '<a href="reports#good">See Interventions</a>'
                     }).then((stat) => { setDismissed(stat.isDismissed) });
                     break;
-                case 1:
+                case 11://disabled
                     Swal.fire({
                         icon: "success",
                         title: "Moderate",
@@ -47,7 +47,12 @@ export default function Popup(url: string, refreshInterval = 20000) {
                         icon: "warning",
                         title: "Unhealthy for Sensitive Groups",
                         text: "Air quality is unhealthy for sensitive groups. Take precautions.",
-                        footer: '<a href="reports#someunhealthy">See Interventions</a>'
+                        footer: '<a href="reports#someunhealthy">See Interventions</a>',
+                        backdrop: `
+                        rgba(255, 102, 00, 0.2)
+                        left top
+                        no-repeat
+                      `
                     }).then((stat) => { setDismissed(stat.isDismissed) });
                     break;
                 case 3:
@@ -55,7 +60,12 @@ export default function Popup(url: string, refreshInterval = 20000) {
                         icon: "warning",
                         title: "Very Unhealthy",
                         text: "Air quality is very unhealthy. Avoid outdoor activities.",
-                        footer: '<a href="reports#unhealthy">See Interventions</a>'
+                        footer: '<a href="reports#unhealthy">See Interventions</a>',
+                        backdrop: `
+                        rgba(255, 51, 00, 0.2)
+                        left top
+                        no-repeat
+                      `
                     }).then((stat) => { setDismissed(stat.isDismissed) });
                     break;
                 case 4:
@@ -63,7 +73,12 @@ export default function Popup(url: string, refreshInterval = 20000) {
                         icon: "error",
                         title: "Hazardous",
                         text: "Air quality is hazardous. Stay indoors and keep windows closed.",
-                        footer: '<a href="reports#hazardous">See Interventions</a>'
+                        footer: '<a href="reports#hazardous">See Interventions</a>',
+                        backdrop: `
+                        rgba(153, 0, 51, 0.4)
+                        left top
+                        no-repeat
+                      `
                     }).then((stat) => { setDismissed(stat.isDismissed) });
                     break;
             }

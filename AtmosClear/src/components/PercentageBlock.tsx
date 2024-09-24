@@ -18,11 +18,21 @@ function PercentageBlock({ list }: PercentageBlockProps) {
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="10px" height="160px">
                                 <defs>
                                     <linearGradient id="GradientColor">
-                                        <stop offset="0%" stop-color="#e91e63" />
-                                        <stop offset="100%" stop-color="#673ab7" />
+                                        <stop offset="0%" stop-color="#" />
+                                        <stop offset="100%" stop-color="#fffff" />
                                     </linearGradient>
                                 </defs>
-                                <circle cx="38" cy="38" r="36" stroke-linecap="round" />
+                                <circle
+                                    cx="38"
+                                    cy="38"
+                                    r="36"
+                                    strokeLinecap="round"
+                                    stroke="url(#GradientColor)"
+                                    strokeWidth="10"
+                                    fill="none"
+                                    strokeDasharray={`${2 * Math.PI * 36}`}
+                                    strokeDashoffset={`${2 * Math.PI * 36 * (1 - item.value / item.maxPercentage)}`}
+                                />
                             </svg>
                             <div className="percentage">
                                 <p>{((item.value / item.maxPercentage) * 100).toFixed(0)}%</p>
